@@ -4,13 +4,40 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build" : "parcel build",
-    "server" : "parcel serve"
+    "build-back": "parcel build --target back ./src/server/index.js",
+    "watch-back": "parcel watch --target back ./src/server/index.js",
+    "serve-back": "nodemon ./dist/server.bundle.js --ignore ./dist/public",
+    "build-front": "parcel build --target front ./src/client/index.html",
+    "watch-front": "parcel watch --target front ./src/client/index.html",
+    "db": "mongod",
+    "serve": "concurrently --restart-tries 1 \"npm:watch-front\" \"npm:watch-back\" \"npm:serve-back\""
+  },
+  "back": "dist/server.bundle.js",
+  "front": "dist/public/index.html",
+  "targets": {
+    "back": {
+      "context": "node",
+      "sourceMap": false
+    },
+    "front": {
+      "context": "browser",
+      "sourceMap": false,
+      "isLibrary": false
+    }
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@parcel/transformer-less": "^2.0.0-beta.2",
+    "concurrently": "^6.0.2",
     "parcel": "^2.0.0-beta.2"
+  },
+  "dependencies": {
+    "connect-livereload": "^0.6.1",
+    "express": "^4.17.1",
+    "livereload": "^0.9.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }
