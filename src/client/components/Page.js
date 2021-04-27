@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Page = ({children,title="New Page"}) => {
+const Page = ({children,title}) => {
     return (
         <main className="page-main">
-            <header>
+            {title && <header>
                 <h2>{title}</h2>
-            </header>
+            </header>}
             {children}
         </main>
     )

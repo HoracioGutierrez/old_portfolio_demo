@@ -6,6 +6,9 @@ import viewRouter from "./routes/viewRoutes"
 import demoRouter from "./routes/demoRoutes"
 import mongoose from "mongoose"
 
+//import randomstring from "randomstring"
+//console.log(randomstring.generate(5))
+
 const app = express()
 
 const liveReloadServer = liveReload.createServer()
