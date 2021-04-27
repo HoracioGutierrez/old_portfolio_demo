@@ -1,33 +1,31 @@
 import React from 'react'
 import {BrowserRouter} from "react-router-dom"
 import {Switch,Route,NavLink} from "react-router-dom"
+import Contacto from '../pages/Contacto'
+import Demos from '../pages/Demos'
+import Home from "../pages/Home"
+import Header from './Header'
 
 const App = () => {
     return(
         <>
-            <header>
-                <h1>Titulo</h1>
-                <nav>
-                    <NavLink to="/uno">pagina 1</NavLink>
-                    <NavLink to="/dos">pagina 2</NavLink>
-                    <NavLink to="/tres">pagina 3</NavLink>
-                </nav>
-            </header>
-            <main>
-                <Switch>
-                    <Route path="/uno" exact>
-                        <p>Uno</p>
-                    </Route>
+            <Switch>
+                <Route path="/" exact>
+                    <Home/>
+                </Route>
+                <Route path="*">
+                    <Header/>
+                </Route>
+            </Switch>
+            <Switch>
+                <Route path="/demos" exact>
+                    <Demos/>
+                </Route>
 
-                    <Route path="/dos" exact>
-                        <p>Dos</p>
-                    </Route>
-
-                    <Route path="/tres" exact>
-                        <p>Tres</p>
-                    </Route>
-                </Switch>
-            </main>
+                <Route path="/contacto" exact>
+                    <Contacto/>
+                </Route>
+            </Switch>
         </>
     )
 }
