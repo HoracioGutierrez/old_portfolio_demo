@@ -1,3 +1,6 @@
-export const getDemoList = (req,res) => {
-    res.json([])
+import Demo from "../models/DemoModel"
+
+export const getDemoList = async (req,res) => {
+    const demos = await Demo.find({})
+    res.json(demos)
 }

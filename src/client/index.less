@@ -146,3 +146,39 @@ a {
     }
 }
 /*END : MAIN HEADER*/
+
+
+
+/*START : DEMOS*/
+#demo-list {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.demo-item {
+    /* background-color: white; */
+    position: relative;
+    width: 100%;
+    height: 200px;
+    .demo-header {
+        z-index: 1;
+        position: absolute;
+        bottom: 0;
+        padding: 1rem;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+    }
+    .demo-thumbnail {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: 0;
+    }
+}
+/*END : DEMOS*/
