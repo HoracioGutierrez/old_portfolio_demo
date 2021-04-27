@@ -8,3 +8,90 @@ html , body , #root {
     min-height: 100vh;
 }
 
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(235, 235, 235);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/*START : LANDING HEADER*/
+#landing-header {
+    text-align: center;
+    h1 {
+        font-family: 'Oswald', sans-serif;
+        font-size: 10rem;
+        line-height: 0.8;
+        letter-spacing: 1.5rem;
+        text-indent: 1.5rem;
+        transform: scale(1.2,0.7);
+        @media screen {
+            @media (min-width:700px){
+                font-size: 12rem;
+            }
+    
+            @media (min-width:1000px){
+                font-size: 14rem;
+            }
+    
+            @media (min-width:1200px){
+                font-size: 15rem;
+            }
+        }
+    }
+    p {
+        font-family: 'Raleway', sans-serif;
+        font-weight: 100;
+        color: rgb(184, 184, 184);
+        font-size: 1.4rem;
+        letter-spacing: 0.2rem;
+        text-indent: 0.2rem;
+        @media screen {
+            @media (min-width:700px){
+                letter-spacing: 0.3rem;
+                text-indent: 0.3rem;
+                font-size: 1.5rem;
+            }
+    
+            @media (min-width:1000px){
+                letter-spacing: 0.4rem;
+                text-indent: 0.4rem;
+                font-size: 1.6rem;
+            }
+    
+            @media (min-width:1200px){
+                letter-spacing: 0.4rem;
+                text-indent: 0.4rem;
+                font-size: 1.75rem;
+            }
+        }
+    }
+}
+
+#landing-nav {
+    margin-top: 2.5rem;
+    a {
+        font-size: 1.3rem;
+        margin: 0 1rem;
+        font-family: 'Raleway', sans-serif;
+        @media screen {
+            @media (min-width:700px){
+                font-size: 1.5rem;
+            }
+    
+            @media (min-width:1000px){
+                font-size: 1.85rem;
+            }
+    
+            @media (min-width:1200px){
+                font-size: 2rem;
+            }
+        }
+    }
+}
+/*END : LANDING HEADER*/

@@ -4,9 +4,9 @@ import Nav from "../layout/Nav"
 
 const Home = () => {
     return (
-      <header>
-            <h1>Horacio Gutierrez</h1>
-            <p>Desarrollador Web...ponele (?</p>
+      <header id="landing-header">
+            <h1>HG</h1>
+            <p>Horacio Gutierrez</p>
             <Nav id="landing-nav"/>
       </header>  
     )
