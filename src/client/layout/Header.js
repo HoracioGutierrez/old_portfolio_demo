@@ -4,9 +4,9 @@ import Nav from './Nav'
 
 const Header = () => {
     return (
-        <header>
+        <header id="main-header">
             <NavLink to="/" exact>
-                <h1>Horacio Gutierrez</h1>
+                <h1>HG</h1>
             </NavLink>
             <Nav id="main-nav"/>
         </header>
