@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import Nav from './Nav'
 
 const Header = () => {
     return (
@@ -7,10 +8,7 @@ const Header = () => {
             <NavLink to="/" exact>
                 <h1>Horacio Gutierrez</h1>
             </NavLink>
-            <nav>
-                <NavLink to="/demos">demos</NavLink>
-                <NavLink to="/contacto">contacto</NavLink>
-            </nav>
+            <Nav id="main-nav"/>
         </header>
     )
 }
