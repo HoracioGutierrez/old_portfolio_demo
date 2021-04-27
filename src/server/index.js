@@ -4,6 +4,7 @@ import connectLivereload from "connect-livereload"
 import path from "path"
 import viewRouter from "./routes/viewRoutes"
 import demoRouter from "./routes/demoRoutes"
+import cursoRouter from "./routes/cursoRoutes"
 import mongoose from "mongoose"
 
 //import randomstring from "randomstring"
@@ -14,9 +15,11 @@ const app = express()
 const liveReloadServer = liveReload.createServer()
 liveReloadServer.watch(path.join(__dirname,"dist","public"))
 
+app.use(express.json())
 app.use(connectLivereload())
 app.use(express.static(path.join(__dirname,"public")))
 app.use(demoRouter)
+app.use(cursoRouter)
 app.use(viewRouter)
 
 liveReloadServer.server.once("connection", () => {
