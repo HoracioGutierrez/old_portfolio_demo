@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import CursoItem from './CursoItem'
 
 const BudgetCounter = () => {
 
@@ -37,6 +38,10 @@ const BudgetCounter = () => {
         })
     }
 
+    const updateCursos = nuevos_cursos => {
+        setCursos(nuevos_cursos)
+    }
+
     return (
         <>
             <p>Total ${total}</p>
@@ -49,7 +54,7 @@ const BudgetCounter = () => {
                 </div>
                 <button>guardar</button>
             </form>
-            {cursos.map(curso=> <p key={curso._id}>{curso.title}</p> )}
+            {cursos.map(curso=> <CursoItem key={curso._id} curso={curso} updateCursos={updateCursos}/>)}
         </>
     )
 }
