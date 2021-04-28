@@ -9,6 +9,8 @@ const BudgetCounter = () => {
     const [title,setTitle] = useState("")
     const [price,setPrice] = useState(0)
     const [cursos,setCursos] = useState([])
+    const [editable,setEditable] = useState(false)
+    const [previousTotal,setPreviousTotal] = useState(0)
 
     useEffect(()=>{
         toast.warning("Buscando cursos...")
@@ -34,6 +36,8 @@ const BudgetCounter = () => {
         .then(({data})=>{
             toast.dismiss()
             toast.success("Curso creado!")
+            setTitle("")
+            setPrice("")
             setCursos([...cursos,data])
         })
     }
@@ -42,9 +46,33 @@ const BudgetCounter = () => {
         setCursos(nuevos_cursos)
     }
 
+    const handleTotalEdit = e => {
+        setPreviousTotal(total)
+        setEditable(true)
+    }
+
+    const handleTotalInput = e => {
+        setTotal(e.target.innerText)
+    }
+
+    const handleTotalSave = () => {
+        setEditable(false)
+    }
+
+    const handleTotalCancel = () => {
+        setTotal(previousTotal)
+        setEditable(false)
+    }
+
     return (
         <>
-            <p>Total ${total}</p>
+            <p>
+                Total $ 
+                <span onInput={handleTotalInput} contentEditable={editable}>{total}</span> 
+                <button onClick={handleTotalEdit}>editar</button> 
+                {editable && <button onClick={handleTotalSave}>guardar</button>}
+                {editable && <button onClick={handleTotalCancel}>cancelar</button>}
+            </p>
             <form onSubmit={handleFormSubmit}>
                 <div>
                     <input type="text" placeholder="Titulo/Curso" value={title} onChange={handleTitleChange} data-target="title"/>
