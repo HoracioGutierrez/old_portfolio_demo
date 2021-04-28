@@ -1,5 +1,14 @@
 import Curso from "../models/CursoModel"
 
+export const getAllCursos = async (req,res) => {
+    try {
+        const cursos = await Curso.find({})
+        res.json(cursos)
+    } catch (e) {
+        res.status(500).json({e})
+    }
+}
+
 export const createCurso = async (req,res) => {
     try {
         const {title,price} = req.body

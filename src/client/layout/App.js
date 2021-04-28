@@ -6,6 +6,7 @@ import DemoDetail from "../pages/DemoDetail"
 import Home from "../pages/Home"
 import Header from './Header'
 import PlaygroundRouter from '../pages/PlaygroundRouter'
+import { ToastContainer } from 'react-toastify'
 
 const App = () => {
     return(
@@ -34,6 +35,7 @@ const App = () => {
                     <Contacto/>
                 </Route>
             </Switch>
+            <ToastContainer/>
         </>
     )
 }
