@@ -1,10 +1,14 @@
 import {Router} from "express"
-import { createCurso , getAllCursos , deleteCurso} from "../controllers/cursoControllers"
+import { createCurso , getAllCursos , deleteCurso , addConceptToTotal , getTotal} from "../controllers/cursoControllers"
 
 const router = Router()
 
 router.get("/api/cursos",getAllCursos)
+router.get("/api/total",getTotal)
+
+router.post("/api/total",addConceptToTotal)
 router.post("/api/curso",createCurso)
+
 router.delete("/api/curso/:_id",deleteCurso)
 
 export default router

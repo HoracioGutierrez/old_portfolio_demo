@@ -2,16 +2,20 @@ import axios from 'axios'
 import React from 'react'
 import { toast } from 'react-toastify'
 
-const CursoItem = ({curso,updateCursos}) => {
+const CursoItem = ({curso,updateCursos,addToTotal}) => {
 
-    const handleDelete = (_id) => {
+    const handleDelete = () => {
         toast.warning("Borrando curso...")
-        axios.delete(`/api/curso/${_id}`)
+        axios.delete(`/api/curso/${curso._id}`)
         .then(({data})=>{
             toast.dismiss()
             toast.success("Curso borrado!")
             updateCursos(data)
         })
+    }
+
+    const handleAddToTotal = () => {
+        addToTotal(curso)
     }
 
     return (
@@ -20,7 +24,8 @@ const CursoItem = ({curso,updateCursos}) => {
                 <h3>{curso.title}</h3>
             </header>
             <p>${curso.price}</p>
-            <button onClick={handleDelete.bind(null,curso._id)}>borrar</button>
+            <button onClick={handleAddToTotal}>agregar</button>
+            <button onClick={handleDelete}>borrar</button>
         </article>
     )
 }

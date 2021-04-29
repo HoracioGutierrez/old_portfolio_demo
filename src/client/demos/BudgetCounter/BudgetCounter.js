@@ -11,14 +11,20 @@ const BudgetCounter = () => {
     const [cursos,setCursos] = useState([])
     const [editable,setEditable] = useState(false)
     const [previousTotal,setPreviousTotal] = useState(0)
+    const [cant,setCant] = useState(3)
 
     useEffect(()=>{
-        toast.warning("Buscando cursos...")
-        axios.get("/api/cursos")
+        toast.warning("Buscando Informacion...")
+        axios.get("/api/total")
+        .then(({data})=>{
+            setTotal(data.amount)
+            return axios.get("/api/cursos")
+        })
         .then(({data})=>{
             toast.dismiss()
             setCursos(data)
         })
+
     },[])
 
     const handleTitleChange = e => {
@@ -29,10 +35,14 @@ const BudgetCounter = () => {
         setPrice(e.target.value)
     }
 
+    const handleHoursAmountChange = e => {
+        setCant(e.target.value)
+    }
+
     const handleFormSubmit = e => {
         e.preventDefault()
         toast.warning("Creando curso...")
-        axios.post("/api/curso",{title,price})
+        axios.post("/api/curso",{title,price,cant})
         .then(({data})=>{
             toast.dismiss()
             toast.success("Curso creado!")
@@ -46,7 +56,7 @@ const BudgetCounter = () => {
         setCursos(nuevos_cursos)
     }
 
-    const handleTotalEdit = e => {
+    const handleTotalEdit = () => {
         setPreviousTotal(total)
         setEditable(true)
     }
@@ -64,6 +74,14 @@ const BudgetCounter = () => {
         setEditable(false)
     }
 
+    const addToTotal = ({price,_id,cant}) => {
+        setTotal(total + price)
+        toast.warning("Guardando nuevo monto...")
+        axios.post("/api/total",{price,_id,cant})
+    }
+
+    
+
     return (
         <>
             <p>
@@ -80,9 +98,12 @@ const BudgetCounter = () => {
                 <div>
                     <input type="number" placeholder="Precio" value={price} onChange={handlePriceChange} data-target="price"/>
                 </div>
+                <div>
+                    <input type="number" placeholder="Cant. Hs" value={cant} onChange={handleHoursAmountChange}/>
+                </div>
                 <button>guardar</button>
             </form>
-            {cursos.map(curso=> <CursoItem key={curso._id} curso={curso} updateCursos={updateCursos}/>)}
+            {cursos.map(curso=> <CursoItem key={curso._id} curso={curso} addToTotal={addToTotal} updateCursos={updateCursos}/>)}
         </>
     )
 }

@@ -7,6 +7,9 @@ const cursoSchema = new mongoose.Schema({
     price : {
         type : Number
     },
+    cant : {
+        type : Number
+    },
     created_at : {
         type : Date
     },
