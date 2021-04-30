@@ -1,7 +1,12 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import Modal from "react-modal"
 import CursoItem from './CursoItem'
+import BudgetCounterProvider from './BudgetCounterProvider'
+import BudgetCounterForm from './BudgetCounterForm'
+import BudgetCounterTotal from './BudgetCounterTotal'
+import CursoList from './CursoList'
 
 const BudgetCounter = () => {
 
@@ -12,6 +17,8 @@ const BudgetCounter = () => {
     const [editable,setEditable] = useState(false)
     const [previousTotal,setPreviousTotal] = useState(0)
     const [cant,setCant] = useState(3)
+    const [edit,setEdit] = useState(false)
+    const [showDetails,setShowDetails] = useState(false)
 
     useEffect(()=>{
         toast.warning("Buscando Informacion...")
@@ -80,31 +87,20 @@ const BudgetCounter = () => {
         axios.post("/api/total",{price,_id,cant})
     }
 
+    const editRequest = () => {
+        setEdit(true)
+    }
     
 
     return (
-        <>
-            <p>
-                Total $ 
-                <span onInput={handleTotalInput} contentEditable={editable}>{total}</span> 
-                <button onClick={handleTotalEdit}>editar</button> 
-                {editable && <button onClick={handleTotalSave}>guardar</button>}
-                {editable && <button onClick={handleTotalCancel}>cancelar</button>}
-            </p>
-            <form onSubmit={handleFormSubmit}>
-                <div>
-                    <input type="text" placeholder="Titulo/Curso" value={title} onChange={handleTitleChange} data-target="title"/>
-                </div>
-                <div>
-                    <input type="number" placeholder="Precio" value={price} onChange={handlePriceChange} data-target="price"/>
-                </div>
-                <div>
-                    <input type="number" placeholder="Cant. Hs" value={cant} onChange={handleHoursAmountChange}/>
-                </div>
-                <button>guardar</button>
-            </form>
-            {cursos.map(curso=> <CursoItem key={curso._id} curso={curso} addToTotal={addToTotal} updateCursos={updateCursos}/>)}
-        </>
+        <BudgetCounterProvider>
+            <Modal isOpen={showDetails}>
+
+            </Modal>
+            {/* <BudgetCounterTotal/> */}
+            <BudgetCounterForm/>
+            {/* <CursoList cursos={cursos}/> */}
+        </BudgetCounterProvider>
     )
 }
 

@@ -2,7 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import { toast } from 'react-toastify'
 
-const CursoItem = ({curso,updateCursos,addToTotal}) => {
+const CursoItem = ({curso,updateCursos,addToTotal,editRequest}) => {
 
     const handleDelete = () => {
         toast.warning("Borrando curso...")
@@ -18,6 +18,11 @@ const CursoItem = ({curso,updateCursos,addToTotal}) => {
         addToTotal(curso)
     }
 
+    const handleEditRequest = () => {
+        editRequest()
+    }
+    
+
     return (
         <article>
             <header>
@@ -25,6 +30,7 @@ const CursoItem = ({curso,updateCursos,addToTotal}) => {
             </header>
             <p>${curso.price}</p>
             <button onClick={handleAddToTotal}>agregar</button>
+            <button onClick={handleEditRequest}>editar</button>
             <button onClick={handleDelete}>borrar</button>
         </article>
     )
