@@ -71,10 +71,6 @@ const BudgetCounterProvider = ({children}) => {
         })
     } 
     
-    const editRequest = () => {}
-
-    const updateCursos = () => {}
-
     const handleTotalInput = e => {
         dispatch({type:"TOTAL_INPUT_SET",nuevo_total:e.target.innerText})
     }
@@ -96,19 +92,27 @@ const BudgetCounterProvider = ({children}) => {
     const handleTotalCancel = () => {
         dispatch({type:"TOTAL_EDITABLE_END"})
     }
+
+    const handleDetailShow = () => {
+        dispatch({type:"DETAIL_MODAL_OPEN"})
+    }
+
+    const handleDetailHide = () => {
+        dispatch({type:"DETAIL_MODAL_CLOSE"})
+    }
     
     const value = useMemo(()=>({
         ...state , 
         handleFormSubmit , 
         handleValueChange ,
-        updateCursos , 
         addToTotal , 
         deleteCurso,
         handleTotalInput,
         handleTotalEdit,
         handleTotalSave,
         handleTotalCancel,
-        editRequest
+        handleDetailShow,
+        handleDetailHide
     }))
 
     return(

@@ -8,6 +8,7 @@ const BudgetCounterTotal = () => {
         handleTotalEdit,
         handleTotalSave,
         handleTotalCancel,
+        handleDetailShow,
         total : {amount,editable}
     } = useContext(BudgetCounterContext)
 
@@ -15,7 +16,7 @@ const BudgetCounterTotal = () => {
         <p>
             Total $ 
             <span onInput={handleTotalInput} contentEditable={editable}>{amount}</span> 
-            <button>ver detalle</button>
+            <button onClick={handleDetailShow}>ver detalle</button>
             <button onClick={handleTotalEdit}>editar</button> 
             {editable && <button onClick={handleTotalSave}>guardar</button>}
             {editable && <button onClick={handleTotalCancel}>cancelar</button>}

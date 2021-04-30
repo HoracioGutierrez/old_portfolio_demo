@@ -20,6 +20,9 @@ export const BudgetCounterInitState = {
         price : 0,
         cant : 3,
         pending : false
+    },
+    modal : {
+        open : false
     }
 }
 
@@ -27,7 +30,23 @@ const BudgetCounterReducer = (state,action) => {
 
     switch(action.type){
 
-        case "TOTAL_EDITABLE_SAVE" : {
+        case "DETAIL_MODAL_CLOSE" : 
+            return {
+                ...state,
+                modal : {
+                    open : false
+                }
+            }
+
+        case "DETAIL_MODAL_OPEN" : 
+            return {
+                ...state,
+                modal : {
+                    open : true
+                }
+            }
+
+        case "TOTAL_EDITABLE_SAVE" : 
             return {
                 ...state,
                 total : {
@@ -36,7 +55,6 @@ const BudgetCounterReducer = (state,action) => {
                     editable : false
                 }
             }
-        }
 
         case "TOTAL_INPUT_SET" : 
             return {

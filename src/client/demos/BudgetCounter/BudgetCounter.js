@@ -1,20 +1,15 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
-import Modal from "react-modal"
-import CursoItem from './CursoItem'
+import React from 'react'
 import BudgetCounterProvider from './BudgetCounterProvider'
 import BudgetCounterForm from './BudgetCounterForm'
 import BudgetCounterTotal from './BudgetCounterTotal'
+import BudgetCounterModal from './BudgetCounterModal'
 import CursoList from './CursoList'
 
 const BudgetCounter = () => {
 
     return (
         <BudgetCounterProvider>
-            <Modal isOpen={false}>
-
-            </Modal>
+            <BudgetCounterModal/>
             <BudgetCounterTotal/>
             <BudgetCounterForm/>
             <CursoList/>
