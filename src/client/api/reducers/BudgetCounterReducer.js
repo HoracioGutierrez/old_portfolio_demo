@@ -1,30 +1,131 @@
 export const BudgetCounterInitState = {
     total : {
+        pending : false,
         amount : 0
     },
-    cursos : {},
+    cursos : {
+        pending : false,
+        list : []
+    },
     form_submit : {
         title : "",
         price : 0,
-        cant : 3
+        cant : 3,
+        pending : false
     },
-    form_edit : {}
+    form_edit : {
+        title : "",
+        price : 0,
+        cant : 3,
+        pending : false
+    }
 }
 
 const BudgetCounterReducer = (state,action) => {
+
+    const {type,...payload} = action
+    
+    console.log(`TYPE : ${action.type}`)
+    console.log(`PAYLOAD :`,payload)
+    console.log("---------------------------------------------")
+
     switch(action.type){
 
-        case "CURSO_CREATE_SUCCESS": {
-            
-        }
+        case "CURSOS_DELETE_SUCCESS" : 
+            return {
+                ...state
+            }
 
-        case "CURSO_CREATE_ERROR": {
+        case "CURSOS_DELETE_PENDING" : 
+            return {
+                ...state
+            }
 
-        }
+        case "TOTAL_UPDATE_SUCCESS" : 
+            return {
+                ...state,
+                total : {
+                    amount : state.total.amount + action.price
+                }
+            }
 
-        case "CURSO_CREATE_PENDING": {
+        case "TOTAL_UPDATE_PENDING" : 
+            return {
+                ...state,
+                total : {
+                    ...state , 
+                    pending : true
+                }
+            }
 
-        }
+        case "CURSOS_REQUEST_SUCCESS" : 
+            return {
+                ...state,
+                cursos : {
+                    list : [...action.cursos],
+                    pending : false
+                }
+            }
+
+        case "CURSOS_REQUEST_PENDING" : 
+            return {
+                ...state,
+                cursos : {
+                    ...state.cursos,
+                    pending : true
+                }
+            }
+
+        case "TOTAL_REQUEST_SUCCESS" : 
+            return {
+                ...state,
+                total : {
+                    amount : action.nuevo_total,
+                    pending : false
+                }
+            }
+
+        case "TOTAL_REQUEST_PENDING" : 
+            return {
+                ...state,
+                total : {
+                    ...state.total,
+                    pending : true
+                }
+            }
+
+        case "CURSO_CREATE_SUCCESS": 
+            return {
+                ...state,
+                cursos : {
+                    list : [
+                        ...state.cursos.list,
+                        action.curso_nuevo
+                    ],
+                    pending : false
+                },
+                form_submit : {
+                    ...BudgetCounterInitState.form_submit
+                }
+            }
+
+        case "CURSO_CREATE_ERROR": 
+            return {
+                ...state,
+                form_submit : {
+                    ...state.form_submit,
+                    pending : false
+                }
+            }
+
+        case "CURSO_CREATE_PENDING": 
+            return {
+                ...state,
+                form_submit : {
+                    ...state.form_submit,
+                    pending : true
+                }
+            }
 
         case "SUBMIT_FORM_CHANGE" : 
             return {

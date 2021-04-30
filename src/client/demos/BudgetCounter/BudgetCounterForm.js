@@ -10,7 +10,6 @@ const BudgetCounterForm = () => {
     } = useContext(BudgetCounterContext)
 
     return (
-        <>
         <form onSubmit={handleFormSubmit}>
             <div>
                 <input type="text" placeholder="Titulo/Curso" value={title} onChange={handleValueChange} data-target="title"/>
@@ -23,7 +22,6 @@ const BudgetCounterForm = () => {
             </div>
             <button>guardar</button>
         </form>
-        </>
     )
 }
 

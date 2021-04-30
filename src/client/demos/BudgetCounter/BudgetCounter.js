@@ -20,45 +20,6 @@ const BudgetCounter = () => {
     const [edit,setEdit] = useState(false)
     const [showDetails,setShowDetails] = useState(false)
 
-    useEffect(()=>{
-        toast.warning("Buscando Informacion...")
-        axios.get("/api/total")
-        .then(({data})=>{
-            setTotal(data.amount)
-            return axios.get("/api/cursos")
-        })
-        .then(({data})=>{
-            toast.dismiss()
-            setCursos(data)
-        })
-
-    },[])
-
-    const handleTitleChange = e => {
-        setTitle(e.target.value)
-    }
-
-    const handlePriceChange = e => {
-        setPrice(e.target.value)
-    }
-
-    const handleHoursAmountChange = e => {
-        setCant(e.target.value)
-    }
-
-    const handleFormSubmit = e => {
-        e.preventDefault()
-        toast.warning("Creando curso...")
-        axios.post("/api/curso",{title,price,cant})
-        .then(({data})=>{
-            toast.dismiss()
-            toast.success("Curso creado!")
-            setTitle("")
-            setPrice("")
-            setCursos([...cursos,data])
-        })
-    }
-
     const updateCursos = nuevos_cursos => {
         setCursos(nuevos_cursos)
     }
@@ -81,12 +42,6 @@ const BudgetCounter = () => {
         setEditable(false)
     }
 
-    const addToTotal = ({price,_id,cant}) => {
-        setTotal(total + price)
-        toast.warning("Guardando nuevo monto...")
-        axios.post("/api/total",{price,_id,cant})
-    }
-
     const editRequest = () => {
         setEdit(true)
     }
@@ -99,7 +54,7 @@ const BudgetCounter = () => {
             </Modal>
             {/* <BudgetCounterTotal/> */}
             <BudgetCounterForm/>
-            {/* <CursoList cursos={cursos}/> */}
+            <CursoList/>
         </BudgetCounterProvider>
     )
 }

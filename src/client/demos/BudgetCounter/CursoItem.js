@@ -1,17 +1,14 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useContext } from 'react'
+import BudgetCounterContext from '../../api/contexts/BudgetCounterContext'
 import { toast } from 'react-toastify'
 
-const CursoItem = ({curso,updateCursos,addToTotal,editRequest}) => {
+const CursoItem = ({curso}) => {
+
+    const {deleteCurso,addToTotal,editRequest} = useContext(BudgetCounterContext)
 
     const handleDelete = () => {
-        toast.warning("Borrando curso...")
-        axios.delete(`/api/curso/${curso._id}`)
-        .then(({data})=>{
-            toast.dismiss()
-            toast.success("Curso borrado!")
-            updateCursos(data)
-        })
+        deleteCurso(curso._id)
     }
 
     const handleAddToTotal = () => {

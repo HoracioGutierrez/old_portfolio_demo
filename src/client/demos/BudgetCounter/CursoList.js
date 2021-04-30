@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import BudgetCounterContext from '../../api/contexts/BudgetCounterContext'
+import CursoItem from './CursoItem'
 
-const CursoList = ({cursos}) => {
+const CursoList = () => {
+
+    const {cursos:{list}} = useContext(BudgetCounterContext)
+
     return (
         <div>
-            {cursos.map(curso=> 
-                <CursoItem key={curso._id} curso={curso} editRequest={editRequest} addToTotal={addToTotal} updateCursos={updateCursos}/>
-            )}
+            {list.map(curso=> <CursoItem key={curso._id} curso={curso}/>)}
         </div>
     )
 }
