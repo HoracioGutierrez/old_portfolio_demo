@@ -1,7 +1,9 @@
 export const BudgetCounterInitState = {
     total : {
         pending : false,
-        amount : 0
+        amount : 0,
+        editable : false,
+        previous : 0
     },
     cursos : {
         pending : false,
@@ -23,13 +25,47 @@ export const BudgetCounterInitState = {
 
 const BudgetCounterReducer = (state,action) => {
 
-    const {type,...payload} = action
-    
-    console.log(`TYPE : ${action.type}`)
-    console.log(`PAYLOAD :`,payload)
-    console.log("---------------------------------------------")
-
     switch(action.type){
+
+        case "TOTAL_EDITABLE_SAVE" : {
+            return {
+                ...state,
+                total : {
+                    ...state.total,
+                    previous : 0,
+                    editable : false
+                }
+            }
+        }
+
+        case "TOTAL_INPUT_SET" : 
+            return {
+                ...state,
+                total : {
+                    ...state.total,
+                    amount : action.nuevo_total
+                }
+            }
+
+        case "TOTAL_EDITABLE_END" : 
+            return {
+                ...state,
+                total : {
+                    ...state.total,
+                    amount : state.total.previous,
+                    editable : false
+                }
+            }
+
+        case "TOTAL_EDITABLE_START" : 
+            return {
+                ...state,
+                total : {
+                    ...state.total,
+                    previous : state.total.amount,
+                    editable : true
+                }
+            }
 
         case "CURSOS_DELETE_SUCCESS" : 
             return {

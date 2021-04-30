@@ -24,24 +24,6 @@ const BudgetCounter = () => {
         setCursos(nuevos_cursos)
     }
 
-    const handleTotalEdit = () => {
-        setPreviousTotal(total)
-        setEditable(true)
-    }
-
-    const handleTotalInput = e => {
-        setTotal(e.target.innerText)
-    }
-
-    const handleTotalSave = () => {
-        setEditable(false)
-    }
-
-    const handleTotalCancel = () => {
-        setTotal(previousTotal)
-        setEditable(false)
-    }
-
     const editRequest = () => {
         setEdit(true)
     }
@@ -52,7 +34,7 @@ const BudgetCounter = () => {
             <Modal isOpen={showDetails}>
 
             </Modal>
-            {/* <BudgetCounterTotal/> */}
+            <BudgetCounterTotal/>
             <BudgetCounterForm/>
             <CursoList/>
         </BudgetCounterProvider>

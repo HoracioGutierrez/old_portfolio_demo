@@ -1,12 +1,13 @@
-import React, { useMemo, useReducer , useEffect } from 'react'
+import React, { useMemo, useEffect } from 'react'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import BudgetCounterContext, { Provider } from '../../api/contexts/BudgetCounterContext'
 import BudgetCounterReducer, { BudgetCounterInitState } from '../../api/reducers/BudgetCounterReducer'
+import {useReducer} from "reinspect"
 
 const BudgetCounterProvider = ({children}) => {
     
-    const [state,dispatch] = useReducer(BudgetCounterReducer,BudgetCounterInitState)
+    const [state,dispatch] = useReducer(BudgetCounterReducer,BudgetCounterInitState,state=>state,"BudgetCounter")
     const {total,cursos,form_submit,form_edit} = state
 
     useEffect(()=>{
@@ -46,8 +47,7 @@ const BudgetCounterProvider = ({children}) => {
         dispatch({type:"SUBMIT_FORM_CHANGE",target,value})
     }
 
-    const updateCursos = () => {}
-
+    
     const deleteCurso = _id => {
         toast.warning("Borrando curso...")
         dispatch({type:"CURSOS_DELETE_PENDING"})
@@ -72,6 +72,25 @@ const BudgetCounterProvider = ({children}) => {
     
     const editRequest = () => {}
 
+    const updateCursos = () => {}
+
+    const handleTotalInput = e => {
+        dispatch({type:"TOTAL_INPUT_SET",nuevo_total:e.target.innerText})
+    }
+
+    const handleTotalEdit = () => {
+        dispatch({type:"TOTAL_EDITABLE_START"})
+    }
+
+    const handleTotalSave = () => {
+        //Falta guardar el total en la DB
+        dispatch({type:"TOTAL_EDITABLE_SAVE"})
+    }
+
+    const handleTotalCancel = () => {
+        dispatch({type:"TOTAL_EDITABLE_END"})
+    }
+    
     const value = useMemo(()=>({
         ...state , 
         handleFormSubmit , 
@@ -79,6 +98,10 @@ const BudgetCounterProvider = ({children}) => {
         updateCursos , 
         addToTotal , 
         deleteCurso,
+        handleTotalInput,
+        handleTotalEdit,
+        handleTotalSave,
+        handleTotalCancel,
         editRequest
     }))
 
