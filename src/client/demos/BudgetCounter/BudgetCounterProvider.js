@@ -13,9 +13,10 @@ const BudgetCounterProvider = ({children}) => {
     useEffect(()=>{
         toast.warning("Buscando Informacion...")
         dispatch({type:"TOTAL_REQUEST_PENDING"})
+
         axios.get("/api/total")
         .then(({data})=>{
-            dispatch({type:"TOTAL_REQUEST_SUCCESS",nuevo_total:data.amount})
+            dispatch({type:"TOTAL_REQUEST_SUCCESS",nuevo_total:data.amount,concepts:data.concepts})
             dispatch({type:"CURSOS_REQUEST_PENDING"})
             return axios.get("/api/cursos")
         })

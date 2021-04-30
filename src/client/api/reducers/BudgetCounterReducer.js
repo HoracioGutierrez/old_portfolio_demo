@@ -3,7 +3,8 @@ export const BudgetCounterInitState = {
         pending : false,
         amount : 0,
         editable : false,
-        previous : 0
+        previous : 0,
+        concepts : []
     },
     cursos : {
         pending : false,
@@ -135,8 +136,10 @@ const BudgetCounterReducer = (state,action) => {
             return {
                 ...state,
                 total : {
+                    ...state.total,
                     amount : action.nuevo_total,
-                    pending : false
+                    pending : false,
+                    concepts : action.concepts
                 }
             }
 
