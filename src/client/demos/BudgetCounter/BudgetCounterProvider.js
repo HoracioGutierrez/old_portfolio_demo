@@ -60,13 +60,14 @@ const BudgetCounterProvider = ({children}) => {
         })
     }
     
-    const addToTotal = () => {
+    const addToTotal = ({price,_id,cant}) => {
         toast.warning("Guardando nuevo monto...")
         dispatch({type:"TOTAL_UPDATE_PENDING"})
         axios.post("/api/total",{price,_id,cant})
         .then(()=>{
-            dispatch({type:"TOTAL_UPDATE_SUCCESS",price})
+            toast.dismiss()
             toast.success("Nuevo mongo guardado!")
+            dispatch({type:"TOTAL_UPDATE_SUCCESS",price})
         })
     } 
     
@@ -83,8 +84,13 @@ const BudgetCounterProvider = ({children}) => {
     }
 
     const handleTotalSave = () => {
-        //Falta guardar el total en la DB
-        dispatch({type:"TOTAL_EDITABLE_SAVE"})
+        toast.warning("Actualizando total...")
+        axios.put("/api/total",{nuevo_total:total.amount})
+        .then(()=>{
+            toast.dismiss()
+            toast.success("Total actualizado!")
+            dispatch({type:"TOTAL_EDITABLE_SAVE"})
+        })
     }
 
     const handleTotalCancel = () => {

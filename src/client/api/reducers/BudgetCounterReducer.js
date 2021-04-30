@@ -81,6 +81,7 @@ const BudgetCounterReducer = (state,action) => {
             return {
                 ...state,
                 total : {
+                    ...state.total,
                     amount : state.total.amount + action.price
                 }
             }
@@ -89,7 +90,7 @@ const BudgetCounterReducer = (state,action) => {
             return {
                 ...state,
                 total : {
-                    ...state , 
+                    ...state.total , 
                     pending : true
                 }
             }

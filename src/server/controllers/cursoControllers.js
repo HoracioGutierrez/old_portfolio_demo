@@ -63,3 +63,21 @@ export const getTotal = async (req,res) => {
         res.status(500).json({e})
     }
 }
+
+export const replaceTotal = async (req,res) => {
+    try {
+        const {nuevo_total} = req.body
+        const resultado_update = await Total.updateOne({},{
+            $set : {
+                amount : nuevo_total
+            }
+        })
+        if(resultado_update.ok){
+            res.json({data:"OK"})
+        }else{
+            throw new Error("No se pudo actualizar el total")
+        }
+    } catch (e) {
+        res.status(500).json({e})
+    }
+}
