@@ -39,14 +39,17 @@ export const addConceptToTotal = async (req,res) => {
         const {price,_id,cant} = req.body
         const resultado_find = await Curso.findById(_id,{created_at:0,updated_at:0,__v:0})
 
+        const {_id:curso_id,...resultado} = resultado_find._doc
 
-        const resultado_update = await Total.findByIdAndUpdate("608aea9e84443ac26af59678",{
+        const resultado_update = await Total.findByIdAndUpdate("608dddfe92805101cf234e48",{
             $inc : {
                 amount : price * cant
             },
             $push : {
                 concepts : {
-                    ...resultado_find._doc,
+                    _id : new mongoose.Types.ObjectId(), 
+                    ...resultado,
+                    curso_id,
                     created_at : Date(),
                     updated_at : Date()
                 }
