@@ -21,7 +21,7 @@ const CursoItem = ({curso}) => {
     
 
     return (
-        <article>
+        <article className="curso-item">
             <header>
                 <h3>{curso.title}</h3>
             </header>

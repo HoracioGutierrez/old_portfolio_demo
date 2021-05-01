@@ -4,16 +4,19 @@ import BudgetCounterForm from './BudgetCounterForm'
 import BudgetCounterTotal from './BudgetCounterTotal'
 import BudgetCounterModal from './BudgetCounterModal'
 import CursoList from './CursoList'
+import DemoPageContainer from '../../components/DemoPageContainer'
 
 const BudgetCounter = () => {
 
     return (
-        <BudgetCounterProvider>
-            <BudgetCounterModal/>
-            <BudgetCounterTotal/>
-            <BudgetCounterForm/>
-            <CursoList/>
-        </BudgetCounterProvider>
+        <DemoPageContainer>
+            <BudgetCounterProvider>
+                <BudgetCounterModal/>
+                <BudgetCounterTotal/>
+                <BudgetCounterForm/>
+                <CursoList/>
+            </BudgetCounterProvider>
+        </DemoPageContainer>
     )
 }
 

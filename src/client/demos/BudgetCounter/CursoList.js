@@ -7,9 +7,9 @@ const CursoList = () => {
     const {cursos:{list}} = useContext(BudgetCounterContext)
 
     return (
-        <div>
+        <section className="cursos-list">
             {list.map(curso=> <CursoItem key={curso._id} curso={curso}/>)}
-        </div>
+        </section>
     )
 }
 
