@@ -101,7 +101,7 @@ const BudgetCounterReducer = (state,action) => {
                 ...state,
                 total : {
                     ...state.total,
-                    amount : state.total.amount + action.price
+                    ...action.nuevo_total
                 }
             }
 

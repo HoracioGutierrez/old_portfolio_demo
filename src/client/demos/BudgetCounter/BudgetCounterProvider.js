@@ -65,10 +65,11 @@ const BudgetCounterProvider = ({children}) => {
         toast.warning("Guardando nuevo monto...")
         dispatch({type:"TOTAL_UPDATE_PENDING"})
         axios.post("/api/total",{price,_id,cant})
-        .then(()=>{
+        .then(({data})=>{
+            console.log(data)
             toast.dismiss()
             toast.success("Nuevo mongo guardado!")
-            dispatch({type:"TOTAL_UPDATE_SUCCESS",price})
+            dispatch({type:"TOTAL_UPDATE_SUCCESS",nuevo_total:data})
         })
     } 
     

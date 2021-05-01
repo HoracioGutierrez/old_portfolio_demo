@@ -37,16 +37,23 @@ export const deleteCurso = async (req,res) => {
 export const addConceptToTotal = async (req,res) => {
     try {
         const {price,_id,cant} = req.body
-        const resultado_update = await Total.updateOne({},{
+        const resultado_find = await Curso.findById(_id,{created_at:0,updated_at:0,__v:0})
+
+
+        const resultado_update = await Total.findByIdAndUpdate("608aea9e84443ac26af59678",{
             $inc : {
-                amount : price
+                amount : price * cant
             },
-            $addToSet : {
-                concepts : {price,_id,cant}
+            $push : {
+                concepts : {
+                    ...resultado_find._doc,
+                    created_at : Date(),
+                    updated_at : Date()
+                }
             }
-        })
-        if(resultado_update.ok){
-            res.json({data:"OK"})
+        },{new:true,projection:{_id:0}})
+        if(resultado_update){
+            res.json(resultado_update)
         }else{
             throw new Error("No se pudo actualizar el total")
         }
