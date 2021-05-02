@@ -21,3 +21,5 @@ jobs:
             - run: npm install
             - run: npm run build --if-present
             - run: cp -a ${{github.workspace}}/dist/. ~/portfolio/
+            - run: pm2 kill
+            - run: pm2 start ${{github.workspace}}/dist/server.bundle.js --name portfolio
