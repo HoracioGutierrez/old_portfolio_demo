@@ -7,9 +7,6 @@ import demoRouter from "./routes/demoRoutes"
 import cursoRouter from "./routes/cursoRoutes"
 import mongoose from "mongoose"
 
-//import randomstring from "randomstring"
-//console.log(randomstring.generate(5))
-
 const app = express()
 
 const liveReloadServer = liveReload.createServer()
