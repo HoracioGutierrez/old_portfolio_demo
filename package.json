@@ -10,7 +10,8 @@
     "build-front": "parcel build --target front ./src/client/index.html",
     "watch-front": "parcel watch --target front ./src/client/index.html",
     "db": "mongod",
-    "serve": "concurrently --restart-tries 1 \"npm:watch-front\" \"npm:watch-back\" \"npm:serve-back\""
+    "serve": "concurrently --restart-tries 1 \"npm:watch-front\" \"npm:watch-back\" \"npm:serve-back\"",
+    "build" : "concurrently --restart-tries 2 \"npm:build-back\" \"npm:build-front\""
   },
   "back": "dist/server.bundle.js",
   "front": "dist/public/index.html",
