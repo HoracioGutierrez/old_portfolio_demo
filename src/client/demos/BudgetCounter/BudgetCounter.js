@@ -6,6 +6,7 @@ import BudgetCounterModal from './BudgetCounterModal'
 import CursoList from './CursoList'
 import DemoPageContainer from '../../components/DemoPageContainer'
 
+
 const BudgetCounter = () => {
 
     return (

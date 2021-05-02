@@ -1,5 +1,8 @@
 import React from 'react'
-import { useHistory, useLocation } from 'react-router'
+import { useHistory } from 'react-router'
+import backgroundUrl from "url:../images/no-thumbnail.jpg"
+
+console.log(backgroundUrl)
 
 const Detail = ({demo}) => {
 
@@ -11,7 +14,7 @@ const Detail = ({demo}) => {
 
     return (
         <>
-            <img src={`/${demo.thumbnail_url}`} alt="demo main picture" className="demo-main-picture"/> 
+            <img src={`${backgroundUrl}`} alt="demo main picture" className="demo-main-picture"/> 
             <h2 className="demo-main-title">{demo.title}</h2>  
             <p className="demo-main-description">{demo.description}</p>
             <button onClick={handleRedirect} className="demo-main-start">iniciar demo</button>
