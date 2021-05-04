@@ -205,14 +205,45 @@ a {
 
 
 /*START : DEMO DETAIL*/
+.detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .demo-main-picture {
     width: 100%;
+    max-width: 500px;
+    margin: auto;
+    @media screen {
+        @media (min-width:500px){
+            padding-top: 3rem;
+            padding-bottom: 1rem;
+        }
+    }
 }
 
 .demo-main-title {
     font-family: 'Raleway', sans-serif;
     font-size: 1.7rem;
-    margin: 1rem 0;
+    margin: 2rem 0;
+    text-transform: uppercase;
+    @media screen {
+        @media (min-width : 700px){
+            font-size: 2rem;
+        }
+    }
+}
+
+.demo-main-description {
+    max-width: 850px;
+    text-align: left;
+    margin-bottom: 1rem;
+    @media screen {
+        @media (min-width : 850px){
+            text-align: justify;
+        }
+    }
 }
 
 .demo-main-start {

@@ -11,12 +11,12 @@ const Detail = ({demo}) => {
     }
 
     return (
-        <>
+        <div className="detail-container">
             <img src={`${backgroundUrl}`} alt="demo main picture" className="demo-main-picture"/> 
             <h2 className="demo-main-title">{demo.title}</h2>  
             <p className="demo-main-description">{demo.description}</p>
             <button onClick={handleRedirect} className="demo-main-start">iniciar demo</button>
-        </>
+        </div>
     )
 }
 
