@@ -1,8 +1,8 @@
 import React from 'react'
 import BudgetCounterProvider from './BudgetCounterProvider'
-import BudgetCounterForm from './BudgetCounterForm'
+import BudgetCounterFormModal from './BudgetCounterFormModal'
 import BudgetCounterTotal from './BudgetCounterTotal'
-import BudgetCounterModal from './BudgetCounterModal'
+import BudgetCounterTotalModal from './BudgetCounterTotalModal'
 import CursoList from './CursoList'
 import DemoPageContainer from '../../components/DemoPageContainer'
 
@@ -12,9 +12,9 @@ const BudgetCounter = () => {
     return (
         <DemoPageContainer>
             <BudgetCounterProvider>
-                <BudgetCounterModal/>
+                <BudgetCounterTotalModal/>
                 <BudgetCounterTotal/>
-                <BudgetCounterForm/>
+                <BudgetCounterFormModal/>
                 <CursoList/>
             </BudgetCounterProvider>
         </DemoPageContainer>

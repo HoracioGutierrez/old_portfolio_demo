@@ -25,10 +25,12 @@ const CursoItem = ({curso}) => {
             <header>
                 <h3>{curso.title}</h3>
             </header>
-            <p>${curso.price}</p>
-            <button onClick={handleAddToTotal}>agregar</button>
-            <button onClick={handleEditRequest}>editar</button>
-            <button onClick={handleDelete}>borrar</button>
+            <p className="curso-item-price">${curso.price}</p>
+            <nav className="curso-options">
+                <button onClick={handleAddToTotal} className="material-icons">add</button>
+                {/* <button onClick={handleEditRequest}>editar</button> */}
+                <button onClick={handleDelete} className="material-icons">delete</button>
+            </nav>
         </article>
     )
 }

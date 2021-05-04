@@ -24,12 +24,31 @@ export const BudgetCounterInitState = {
     },
     modal : {
         open : false
+    },
+    form_modal : {
+        open : false
     }
 }
 
 const BudgetCounterReducer = (state,action) => {
 
     switch(action.type){
+
+        case "FORM_MODAL_OPEN" :
+            return {
+                ...state,
+                form_modal : {
+                    open : true
+                }
+            }
+
+        case "FORM_MODAL_CLOSE" :
+            return {
+                ...state,
+                form_modal : {
+                    open : false
+                }
+            }
 
         case "DETAIL_MODAL_CLOSE" : 
             return {

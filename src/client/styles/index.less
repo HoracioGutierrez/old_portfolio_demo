@@ -24,6 +24,14 @@ a {
     color: black;
 }
 
+.btn {
+    border: none;
+    outline: none;
+    padding: 0.5rem 1rem;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+}
+
 /*START : LANDING HEADER*/
 #landing-header {
     text-align: center;
@@ -222,12 +230,13 @@ a {
 
 
 /*START : MODAL CUSTOM STYLES*/
-.budget-detail-modal {
+.budget-detail-modal , .budget-form-modal {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     width: 90%;
+    max-width: 500px;
     border: 1px solid #ccc;
     background: #fff;
     overflow: auto;
@@ -237,7 +246,7 @@ a {
     padding: 20px
 }
 
-.budget-detail-overlay {
+.budget-detail-overlay , .budget-form-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -268,6 +277,7 @@ a {
 
 /*START : CURSOS */
 .cursos-list {
+    font-family: 'Roboto Mono', monospace;
     margin-top: 1rem;
     display: grid;
     row-gap: 16px;
@@ -276,9 +286,45 @@ a {
 
 .curso-item {
     background-color: white;
-    padding: 1rem;
+    padding: 3rem 1rem;
     border-radius: 3px;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h3 {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+    .curso-item-price {
+        font-size: 1.5rem;
+    }
+    @media screen {
+        @media (min: width 700%){
+            padding: 4rem 1rem;
+        }
+    }
+}
+
+.curso-options {
+    margin-top: 1rem;
+    button {
+        margin: 0 0.5rem;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        background-color: rgb(187, 187, 187);
+        color: white;
+        margin: 0 0.5rem;
+        box-shadow: 1px 1px 5px rgba(0,0,0,0.61);
+    }
+}
+
+.curso-item#crear-curso {
+    background-color: black;
+    color: white;
 }
 
 .budget-form {
@@ -292,3 +338,37 @@ a {
     }
 }
 /*END : CURSOS */
+
+
+/*START : TOTAL SECTION*/
+#main-total {
+    font-family: 'Roboto Mono', monospace;
+    margin-bottom: 4rem;
+}
+
+#total-text {
+    text-align: center;
+    font-size: 1.5rem;
+    color: grey;
+    span {
+        font-weight: bold;
+        font-size: 5rem;
+        color: black;
+    }
+}
+
+#total-options {
+    margin-top: 1rem;
+    text-align: center;
+    button {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        background-color: rgb(187, 187, 187);
+        color: white;
+        margin: 0 0.5rem;
+        box-shadow: 1px 1px 5px rgba(0,0,0,0.61);
+    }
+}
+/*END : TOTAL SECTION*/

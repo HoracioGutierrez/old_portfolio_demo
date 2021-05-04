@@ -36,6 +36,7 @@ const BudgetCounterProvider = ({children}) => {
             toast.dismiss()
             toast.success("Curso creado!")
             dispatch({type:"CURSO_CREATE_SUCCESS",curso_nuevo:data})
+            handleFormHide()
         })
         .catch(()=>{
             dispatch({type:"CURSO_CREATE_ERROR"})
@@ -102,6 +103,14 @@ const BudgetCounterProvider = ({children}) => {
     const handleDetailHide = () => {
         dispatch({type:"DETAIL_MODAL_CLOSE"})
     }
+
+    const handleFormShow = () => {
+        dispatch({type:"FORM_MODAL_OPEN"})
+    }
+
+    const handleFormHide = () => {
+        dispatch({type:"FORM_MODAL_CLOSE"})
+    }
     
     const value = useMemo(()=>({
         ...state , 
@@ -114,7 +123,9 @@ const BudgetCounterProvider = ({children}) => {
         handleTotalSave,
         handleTotalCancel,
         handleDetailShow,
-        handleDetailHide
+        handleDetailHide,
+        handleFormHide,
+        handleFormShow
     }))
 
     return(

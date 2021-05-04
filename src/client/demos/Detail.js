@@ -2,8 +2,6 @@ import React from 'react'
 import { useHistory } from 'react-router'
 import backgroundUrl from "url:../images/no-thumbnail.jpg"
 
-console.log(backgroundUrl)
-
 const Detail = ({demo}) => {
 
     const history = useHistory()
